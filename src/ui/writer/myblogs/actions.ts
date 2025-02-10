@@ -17,17 +17,17 @@ export const publishedBlogsActions = networkActionsCreator<Array<BlogDetail>>(
 export const fetchSubmittedBlogs = (): AsyncAction => async (
   dispatch: Dispatch,
   getState: StateFetcher,
-) => fetchBlogs(submittedBlogsActions, 'writer/blog/submitted/all', dispatch, getState);
+) => fetchBlogs(submittedBlogsActions, 'blog/writer/submitted/all', dispatch, getState);
 
 export const fetchDraftBlogs = (): AsyncAction => async (
   dispatch: Dispatch,
   getState: StateFetcher,
-) => fetchBlogs(draftBlogsActions, 'writer/blog/drafts/all', dispatch, getState);
+) => fetchBlogs(draftBlogsActions, 'blog/writer/drafts/all', dispatch, getState);
 
 export const fetchPublishedBlogs = (): AsyncAction => async (
   dispatch: Dispatch,
   getState: StateFetcher,
-) => fetchBlogs(publishedBlogsActions, 'writer/blog/published/all', dispatch, getState);
+) => fetchBlogs(publishedBlogsActions, 'blog/writer/published/all', dispatch, getState);
 
 const fetchBlogs = async (
   networkActions:
@@ -64,7 +64,7 @@ export const deleteBlog = (blog: BlogDetail): AsyncAction => async (
     dispatch(deleteBlogActions.requesting.action());
     const response = await protectedRequest<null, null>(
       {
-        url: 'writer/blog/id/' + blog._id,
+        url: 'blog/writer/id/' + blog._id,
         method: 'DELETE',
       },
       token,

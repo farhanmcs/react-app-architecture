@@ -19,12 +19,12 @@ export const publishedBlogsActions = networkActionsCreator<Array<BlogDetail>>(
 export const fetchSubmittedBlogs = (): AsyncAction => async (
   dispatch: Dispatch,
   getState: StateFetcher,
-) => fetchBlogs(submittedBlogsActions, 'editor/blog/submitted/all', dispatch, getState);
+) => fetchBlogs(submittedBlogsActions, 'blog/editor/submitted/all', dispatch, getState);
 
 export const fetchPublishedBlogs = (): AsyncAction => async (
   dispatch: Dispatch,
   getState: StateFetcher,
-) => fetchBlogs(publishedBlogsActions, 'editor/blog/published/all', dispatch, getState);
+) => fetchBlogs(publishedBlogsActions, 'blog/editor/published/all', dispatch, getState);
 
 const fetchBlogs = async (
   networkActions: typeof submittedBlogsActions | typeof publishedBlogsActions,
@@ -58,7 +58,7 @@ export const publishBlog = (blog: BlogDetail): AsyncAction => async (
     dispatch(publishBlogActions.requesting.action());
     const response = await protectedRequest<null, null>(
       {
-        url: `editor/blog/publish/${blog._id}`,
+        url: `blog/editor/publish/${blog._id}`,
         method: 'PUT',
       },
       token,
@@ -84,7 +84,7 @@ export const unpublishBlog = (blog: BlogDetail): AsyncAction => async (
     dispatch(unpublishBlogActions.requesting.action());
     const response = await protectedRequest<null, null>(
       {
-        url: `editor/blog/unpublish/${blog._id}`,
+        url: `blog/editor/unpublish/${blog._id}`,
         method: 'PUT',
       },
       token,
@@ -110,7 +110,7 @@ export const fetchBlog = (blog: BlogDetail): AsyncAction => async (
     dispatch(blogActions.requesting.action());
     const response = await protectedRequest<null, BlogDetail>(
       {
-        url: 'editor/blog/id/' + blog._id,
+        url: 'blog/editor/id/' + blog._id,
         method: 'GET',
       },
       token,

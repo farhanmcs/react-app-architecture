@@ -35,7 +35,7 @@ export const fetchBlog = (blogId: string): AsyncAction => async (
     dispatch(blogActions.requesting.action());
     const response = await protectedRequest<null, BlogDetail>(
       {
-        url: 'writer/blog/id/' + blogId,
+        url: 'blog/writer/id/' + blogId,
         method: 'GET',
       },
       token,
@@ -56,7 +56,7 @@ export const createBlog = (body: BlogRequestBody): AsyncAction => async (
     dispatch(createBlogActions.requesting.action());
     const response = await protectedRequest<BlogRequestBody, BlogDetail>(
       {
-        url: 'writer/blog',
+        url: 'blog/writer',
         method: 'POST',
         data: { ...body },
       },
@@ -79,7 +79,7 @@ export const saveBlog = (blogId: string, body: BlogRequestBody): AsyncAction => 
     dispatch(saveBlogActions.requesting.action());
     const response = await protectedRequest<BlogRequestBody, BlogDetail>(
       {
-        url: 'writer/blog/id/' + blogId,
+        url: 'blog/writer/id/' + blogId,
         method: 'PUT',
         data: { ...body },
       },
@@ -102,7 +102,7 @@ export const submitBlog = (blogId: string): AsyncAction => async (
     dispatch(submitBlogActions.requesting.action());
     const response = await protectedRequest<null, null>(
       {
-        url: 'writer/blog/submit/' + blogId,
+        url: 'blog/writer/submit/' + blogId,
         method: 'PUT',
       },
       token,
@@ -124,7 +124,7 @@ export const withdrawBlog = (blogId: string): AsyncAction => async (
     dispatch(withdrawBlogActions.requesting.action());
     const response = await protectedRequest<null, null>(
       {
-        url: 'writer/blog/withdraw/' + blogId,
+        url: 'blog/writer/withdraw/' + blogId,
         method: 'PUT',
       },
       token,
